@@ -1,0 +1,11 @@
+apiVersion: cache.my.domain/v1alpha1
+kind: Osushi
+metadata:
+  name: syake
+spec:
+  size: 1
+  # endressOsushi: false
+  # traditionalKaitenSushi: true
+  mode: "traditionalKaitenSushi"
+  osushiSpeed: 1
+  lengthOfOsushiLane: 100

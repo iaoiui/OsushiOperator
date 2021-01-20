@@ -1,0 +1,89 @@
+
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.2.4
+  creationTimestamp: null
+  name: osushis.cache.my.domain
+spec:
+  additionalPrinterColumns:
+  - JSONPath: .spec.size
+    name: Size
+    type: integer
+  - JSONPath: .spec.emoji
+    name: Emoji
+    type: string
+  group: cache.my.domain
+  names:
+    kind: Osushi
+    listKind: OsushiList
+    plural: osushis
+    singular: osushi
+  scope: Namespaced
+  subresources:
+    status: {}
+  validation:
+    openAPIV3Schema:
+      description: Osushi is the Schema for the osushis API
+      properties:
+        apiVersion:
+          description: 'APIVersion defines the versioned schema of this representation
+            of an object. Servers should convert recognized schemas to the latest
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+          type: string
+        kind:
+          description: 'Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+          type: string
+        metadata:
+          type: object
+        spec:
+          description: OsushiSpec defines the desired state of Osushi
+          properties:
+            emoji:
+              type: string
+            lengthOfOsushiLane:
+              format: int32
+              type: integer
+            mode:
+              description: 'EndressOsushi          bool   `json:"endressOsushi,omitempty"`
+                TraditionalKaitenSushi bool   `json:"traditionalKaitenSushi,omitempty"`
+                Modes: endressOsushi, traditionalKaitenSushi'
+              type: string
+            osushiSpeed:
+              format: int32
+              type: integer
+            size:
+              description: Foo is an example field of Osushi. Edit Osushi_types.go
+                to remove/update Size is the size of the osushi deployment
+              format: int32
+              type: integer
+          required:
+          - size
+          type: object
+        status:
+          description: OsushiStatus defines the observed state of Osushi
+          properties:
+            freshness:
+              description: 'INSERT ADDITIONAL STATUS FIELD - define observed state
+                of cluster Important: Run "make" to regenerate code after modifying
+                this file'
+              type: string
+            reacheable:
+              type: boolean
+          type: object
+      type: object
+  version: v1alpha1
+  versions:
+  - name: v1alpha1
+    served: true
+    storage: true
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
